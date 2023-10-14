@@ -1,0 +1,478 @@
+<html lang="en">
+  <head>
+    <meta charset='utf-8'/>
+    <title></title>
+    <script class="remove" src="https://www.w3.org/Tools/respec/respec-w3c"></script>
+    <script>
+        function remove_status_remark() {
+            const sotd = document.getElementById("sotd");
+            const p = sotd.getElementsByTagName('p')[0];
+            sotd.removeChild(p);
+        }
+    </script>
+    <script class="remove">
+      var respecConfig = {
+        localBiblio: {
+        },
+        // specification status (e.g., WD, LCWD, NOTE, etc.). If in doubt use ED.
+        //specStatus: "CG-DRAFT",
+        specStatus: "unofficial",
+
+        // the specification's short name, as in http://www.w3.org/TR/short-name/
+        shortName: "citizenship-vocab",
+
+        // subtitle for the spec
+        subtitle: "A Linked Data vocabulary for expressing attributes related to citizenship",
+
+        // if you wish the publication date to be other than today, set this
+        //publishDate: "2019-03-26",
+        //crEnd: "2019-04-23",
+        //implementationReportURI: "https://w3c.github.io/",
+        //previousMaturity: "UNOFFICIAL",
+        //previousPublishDate: "2019-12-03",
+
+        // if there is a previously published draft, uncomment this and set its YYYY-MM-DD date
+        // and its maturity status
+        // previousPublishDate:  "1977-03-15",
+        // previousMaturity:  "WD",
+
+        //thisVersion: "https://w3id.org/citizenship/v2",
+        doJsonLd: true,
+
+        github: "https://github.com/w3c-ccg/citizenship-vocab/",
+        includePermalinks: false,
+
+        // if there a publicly available Editor's Draft, this is the link
+        edDraftURI: "https://w3c-ccg.github.io/citizenship-vocab/",
+
+        // if this is a LCWD, uncomment and set the end of its review period
+        // lcEnd: "2009-08-05",
+
+        // editors, add as many as you like
+        // only "name" is required
+        editors: [{
+          name: "Manu Sporny",
+          url: "http://manu.sporny.org/",
+          company: "Digital Bazaar",
+          companyURL: "https://digitalbazaar.com/",
+          w3cid: 41758
+        }, {
+          name: "Mike Varley",
+          url: "https://www.linkedin.com/in/mavarley/",
+          company: "Secure Key",
+          companyURL: "https://securekey.com/"
+        }, {
+          name: "Markus Sabadello",
+          url: "https://www.linkedin.com/in/markus-sabadello-353a0821",
+          company: "Danube Tech",
+          companyURL: "https://danubetech.com/",
+          w3cid: 46729
+        }],
+        // authors, add as many as you like.
+        // This is optional, uncomment if you have authors as well as editors.
+        // only "name" is required. Same format as editors.
+        authors:[{
+          name: "Dave Longley",
+          url: "https://github.com/dlongley",
+          company: "Digital Bazaar",
+          companyURL: "https://digitalbazaar.com/",
+          w3cid: 48025,
+        }, {
+          name: "Manu Sporny",
+          url: "http://manu.sporny.org/",
+          company: "Digital Bazaar",
+          companyURL: "https://digitalbazaar.com/",
+          w3cid: 41758
+        }],
+        // name of the group
+        group: "credentials",
+
+        // URI of the public WG page
+        wgURI:        "https://www.w3.org/community/credentials/",
+
+        // name (with the @w3c.org) of the public mailing to which comments are due
+        wgPublicList: "public-credentials",
+
+        // URI of the patent status for this WG, for Rec-track documents
+        // !!!! IMPORTANT !!!!
+        // This is important for Rec-track documents, do not copy a patent URI from a random
+        // document unless you know what you're doing. If in doubt ask your friendly neighborhood
+        // Team Contact.
+        //wgPatentURI:  "https://www.w3.org/2004/01/pp-impl/98922/status",
+        maxTocLevel: 2,
+        inlineCSS: true,
+
+        alternateFormats: [
+          {uri: "citizenship-v2.ttl", label: "Turtle"},
+          {uri: "citizenship-v2.jsonld", label: "JSON-LD"}
+        ],
+        postProcess : [remove_status_remark],
+        doRDFa: false,
+        noIDLIn: true,
+        noLegacyStyle: false
+      };
+    </script>
+    <style type="text/css">
+      dl.terms dt {
+        float: left;
+        clear: left;
+        width: 10vw;
+      }
+
+      dl.terms dd {
+        margin-left: 15vw;
+      }
+
+      dl.terms dd:after {
+          content: '';
+          display: block;
+          clear: both;
+          margin-bottom: 5px;
+      }
+      table.rdfs-definition td {
+        vertical-align: top;
+        margin-right: 2em;
+      }
+      .bold {
+        font-weight: bold;
+      }
+      /* code {
+        color: red;
+      } */
+
+      .term_definitions section {
+        border-bottom-style: solid ;
+        border-bottom-width: 1px;
+        border-bottom-color: darkgrey;
+      }
+
+      .annoy {
+        background: hsla(40,100%,50%,0.95);
+		    color: black;
+		    padding: .75em 1em;
+		    border: red;
+		    border-style: solid none;
+		    box-shadow: 0 2px 8px black;
+		    text-align: center;
+      }
+    </style>
+  </head>
+  <body typeof="owl:Ontology">
+    <section id="abstract">
+      <p>This document describes the <span property="dc:title" id="title"></span>, i.e.,
+         the <span property="dc:description" id="description"></span>.
+      </p>
+      <p>
+This specification describes a Linked Data vocabulary for asserting Verifiable
+Credentials related to residency and citizenship information, such as given
+name, family name, country of citizenship, birthday, and other attributes used
+to determine the citizenship status of a citizen.
+      </p>
+      <p>Alternate versions of the vocabulary definition exist in
+        <a rel="alternate" href="citizenship-v2.ttl">Turtle</a> and
+        <a rel="alternate" href="citizenship-v2.jsonld">JSON-LD</a>.
+      </p>
+      <dl>
+        <dt>Published:</dt><dd><time property="dc:date" id="time"></time></dd>
+        <dt>Version Info:</dt>
+        <dd>2.0</dd>
+        <dt id="see_also">See Also: </dt>
+       </dl>
+    </section>
+
+    <section id="sotd">
+      <!--p>
+Comments regarding all aspects of this document are welcome.
+Please file issues
+directly on <a href="https://github.com/w3c-ccg/citizenship-vocab/issues/">GitHub</a>,
+or send them to
+<a href="mailto:public-credentials@w3.org">public-credentials@w3.org</a>
+(<a href="mailto:public-credentials-request@w3.org?subject=subscribe">subscribe</a>,
+<a href="https://lists.w3.org/Archives/Public/public-credentials/">archives</a>).
+</p-->
+    </section>
+
+    <section id="conformance"></section>
+
+    <section class="informative">
+      <h2>Introduction</h2>
+
+      <p>
+This specification describes a Linked Data vocabulary for asserting
+Verifiable Credentials related to citizenship information, such as
+given name, family name, country of citizenship, birthday, and other
+attributes used to determine the citizenship status of a citizen.
+      </p>
+
+      <section class="informative">
+        <h3>Use Cases and Requirements</h3>
+
+        <p>
+The following use cases outline a number of key scenarios that readers might
+find useful:
+        </p>
+
+        <ul>
+          <li>
+Permanent Residency Card
+          </li>
+        </ul>
+
+      </section>
+
+      <section class="informative">
+        <h3>Example</h3>
+
+        <p>
+The following example is provided as a simple example of when this vocabulary
+is useful:
+        </p>
+
+        <pre class="example">
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/citizenship/v2"
+    <span class="comment">// optional country-specific context can be added below</span>
+    <span class="comment">// e.g., https://uscis.gov/prc/v1</span>
+  ],
+  "id": "https://issuer.oidp.uscis.gov/credentials/83627465",
+  "type": ["VerifiableCredential", "PermanentResidentCardCredential"],
+  "name": "Permanent Resident Card Credentials",
+  "description": "Government of Example Permanent Resident Card Credentials.",
+  "issuer": "did:example:28394728934792387",
+  "issuanceDate": "2019-12-03T12:19:52Z",
+  "expirationDate": "2029-12-03T12:19:52Z",
+  "credentialSubject": {
+    "id": "did:example:b34ca6cd37bbf23",
+    "type": ["PermanentResident", "Person"],
+    "givenName": "JOHN",
+    "additionalName": "JACOB",
+    "familyName": "SMITH",
+    "image": "data:image/png;base64,iVBORw0KGgo...kJggg==",
+    "gender": "Male",
+    "residentSince": "2015-01-01",
+    "commuterClassification": "C1",
+    "birthCountry": "Bahamas",
+    "birthDate": "1958-07-17",
+    "height": {
+      "type": "QuantitativeValue",
+      "unitCode": "INH",
+      "value": 71
+    },
+    "residence": {
+      "type": "PostalAddress",
+      "addressLocality": "Boston",
+      "addressRegion": "Massachusetts",
+      "addressCountry": "US"
+    },
+    "formerNationality": "BS",
+    "maritalStatus": "married",
+    "marriageCertificateNumber": "A123B",
+    "marriageLocation": {
+      "type": "PostalAddress",
+      "addressLocality": "Nassau",
+      "addressRegion": "New Providence",
+      "addressCountry": "BS"
+    },
+    "permanentResidentCard": {
+      "type": "PermanentResidentCard",
+      "identifier": "83627465",
+      "lprCategory": "C09",
+      "lprNumber": "999-999-999",
+      "filingLocation": {
+        "type": "PostalAddress",
+        "addressLocality": "Washington, D.C.",
+        "addressRegion": "District of Columbia",
+        "addressCountry": "US"
+      }
+    }
+  },
+  "proof": {
+     "type": "Ed25519Signature2018",
+     "created": "2020-01-30T03:32:15Z",
+     "jws": "eyJhbGciOiJFZERTQSIsI...wRG2fNmAx60Vi4Ag",
+     "proofPurpose": "assertionMethod",
+     "verificationMethod": "did:example:28394728934792387#keys-7f83he7s8"
+  }
+}
+        </pre>
+      </section>
+    </section>
+
+    <section class="informative">
+      <h2>Terminology</h2>
+
+      <div data-include="./terms.html"
+        data-oninclude="restrictReferences">
+      </div>
+    </section>
+
+
+    <section>
+      <h2>Namespaces</h2>
+      <p>This specification makes use of the following namespaces:</p>
+      <dl class="terms" id="namespaces">
+      </dl>
+    </section>
+
+    <section id="term_definitions">
+      <h2>Term definitions</h2>
+
+      <p>
+This vocabulary assumes all terms specified in the base Verifiable Credentials
+[[VC-DATA-MODEL]] context. In addition, the following classes, properties, and
+definitions are available for specifying information related to residency and
+citizenship status.
+      </p>
+
+      <section id="class_definitions" class="term_definitions">
+        <h2>Class definitions</h2>
+      </section>
+  
+      <section id="property_definitions" class="term_definitions">
+        <h3>Property definitions</h3>
+      </section>
+  
+      <section id="individual_definitions" class="term_definitions">
+        <h3>Definitions for individuals</h3>
+      </section>
+    </section>
+    
+    <section id="reserved_term_definitions">
+      <h1>Reserved term definitions</h1>
+
+      <p>
+All terms in this section are reserved.  Implementers may use these terms, but
+should expect them and/or their meanings to change during the process to
+normatively specify them. Implementers should not use these terms without a
+publicly disclosed specification describing their implementation.
+      </p>
+
+      <section id="reserved_class_definitions" class="term_definitions">
+        <h2>Reserved classes</h2>
+      </section>
+  
+      <section id="reserved_property_definitions" class="term_definitions">
+        <h2>Reserved properties</h2>
+      </section>
+  
+      <section id="reserved_individual_definitions" class="term_definitions">
+        <h2>Reserved individuals</h2>
+      </section>
+    </section>   
+
+    <section id="deprecated_term_definitions">
+      <h2>Deprecated term definitions</h2>
+
+      <p class="annoy">All terms in this section are <em><strong>deprecated</strong></em>, and are only kept in this vocabulary for backward compatibility. 
+        <br>New applications should not use them.
+      </p>
+
+      <section id="deprecated_class_definitions" class="term_definitions">
+        <h3>Deprecated class definitions</h3>
+      </section>
+  
+      <section id="deprecated_property_definitions" class="term_definitions">
+        <h3>Deprecated property definitions</h3>
+      </section>
+  
+      <section id="deprecated_individual_definitions" class="term_definitions">
+        <h3>Deprecated definitions for individuals</h3>
+      </section>
+    </section>
+
+    <section class="informative">
+      <h2>Privacy Considerations</h2>
+
+      <p>
+This section details the general privacy considerations and specific privacy
+implications of deploying this specification into production environments.
+      </p>
+
+    </section>
+
+    <section class="informative">
+      <h2>Security Considerations</h2>
+
+      <p>
+There are a number of security considerations that implementers should be
+aware of when processing data described by this specification. Ignoring or
+not understanding the implications of this section can result in
+security vulnerabilities.
+      </p>
+
+      <p>
+While this section attempts to highlight a broad set of security
+considerations, it is not a complete list. Implementers are urged to seek the
+advice of security and cryptography professionals when implementing mission
+critical systems using the technology outlined in this specification.
+      </p>
+
+    </section>
+
+    <section class="informative">
+      <h2>Accessibility Considerations</h2>
+
+      <p>
+There are a number of accessibility considerations implementers should be
+aware of when processing data described in this specification. As with any web
+standards or protocols implementation, ignoring accessibility issues makes
+this information unusable to a large subset of the population. It is important
+to follow accessibility guidelines and standards, such as [[WCAG21]], to ensure
+all people, regardless of ability, can make use of this data. This is
+especially important when establishing systems utilizing cryptography, which
+have historically created problems for assistive technologies.
+      </p>
+
+      <p>
+This section details the general accessibility considerations to take into
+account when utilizing this data model.
+      </p>
+
+    </section>
+
+    <section class="informative">
+      <h2>Internationalization Considerations</h2>
+
+      <p>
+There are a number of internationalization considerations implementers should be
+aware of when publishing data described in this specification. As with any web
+standards or protocols implementation, ignoring internationalization makes it
+difficult for data to be produced and consumed across a disparate set of
+languages and societies, which would limit the applicability of the
+specification and significantly diminish its value as a standard.
+      </p>
+
+      <p>
+This section outlines general internationalization considerations to take into
+account when utilizing this data model.
+      </p>
+
+    </section>
+
+    <section class="informative">
+      <h2>Revision History</h2>
+
+      <h3>v2</h3>
+
+      <ul>
+        <li>
+Improve JSON-LD context type scoping.
+        </li>
+        <li>
+Change outer `VerifiableCredential` type to `PermanentResidentCardCredential`.
+        </li>
+        <li>
+Add `permanentResidentCard` property for `PermanentResident` which has a
+value type of `PermanentResidentCard`. Move scoped properties to
+`PermanentResidentCard` as appropriate.
+        </li>
+        <li>
+Add additional person properties.
+        </li>
+      </ul>
+    </section>
+
+  </body>
+</html>

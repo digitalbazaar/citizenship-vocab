@@ -1,0 +1,53 @@
+vocab:
+  - id: citizenship
+    value: https://w3id.org/citizenship#
+
+prefix:
+  - id: cred
+    value: https://www.w3.org/2018/credentials#
+  - id: schema
+    value: https://schema.org/
+
+ontology:
+  - property: dc:title
+    value: Citizenship Vocabulary v2.0
+
+  - property: dc:description
+    value: RDFS [[RDF-SCHEMA]] vocabulary used for asserting Verifiable Credentials [[VC-DATA-MODEL]] related to citizenship information.
+
+#  - property: rdfs:seeAlso
+#    value: https://www.w3.org/TR/vc-data-model-2.0/
+
+class:
+  - id: PermanentResident
+    label: Permanent Resident
+    upper_value: schema:Person
+    comment: Specifies that the subject of the credential is a permanent resident.
+
+  - id: PermanentResidentCard
+    label: Permanent Resident Card
+    comment: Specifies that the object is a permanent resident card.
+
+  - id: PermanentResidentCardCredential
+    label: Permanent Resident Card Credential
+    comment: Specifies that the credential is a permanent resident card credential.
+
+# NOTE: no way to specify foreign terms
+  - id: Person
+    label: Person
+    comment: Specifies that the subject of the credential is a person.
+
+  - id: PostalAddress
+    label: Postal Address
+    comment: A mailing address.
+
+  - id: QuantitativeValue
+    label: Quantitative Value
+    comment: A point value or interval for product characteristics and other purposes. Used with `height`.
+
+#property:
+#  - id: xxx
+#    label: xxx
+#    domain: cred:VerifiableCredential
+#    range: cred:FooBar
+#    comment: The value of the `xxx` property MUST be one or more <a href="#XXX">XXX</a> instances.
